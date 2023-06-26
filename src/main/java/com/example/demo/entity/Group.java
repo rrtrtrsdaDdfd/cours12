@@ -19,7 +19,7 @@ public class Group {
     private int id;
     @Column
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Student> students;
 
     public Group() {

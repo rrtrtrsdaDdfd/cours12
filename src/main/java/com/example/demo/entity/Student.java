@@ -17,7 +17,7 @@ public class Student {
     private String name;
     @Column
     private String surname;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "group_id")
     private Group group;
 
