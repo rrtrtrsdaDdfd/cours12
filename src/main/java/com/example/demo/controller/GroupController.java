@@ -1,30 +1,31 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.AddGroupsRequestDto;
+import com.example.demo.dto.AllGroupsResponseDto;
 import com.example.demo.entity.Group;
 import com.example.demo.service.GroupService;
 import com.example.demo.service.GroupServiceImpl;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/group")
+@RestController
+@RequestMapping("/groups")
+@RequiredArgsConstructor
 public class GroupController {
-    @Autowired
-    private GroupService groupService;
+    private final GroupService groupService;
 
-    @PostMapping("/add")
-    public void saveGroup(@RequestBody Group group) {
-        groupService.saveGroup(group);
+    @PostMapping
+    public void saveGroup(@RequestBody AddGroupsRequestDto groupsRequestDto) {
+        groupService.saveGroup(groupsRequestDto);
     }
 
-    @GetMapping("/all")
-    public List<Group> getAllGroup() {
+    @GetMapping
+    public List<AllGroupsResponseDto> getAllGroup() {
         return groupService.getAllGroup();
     }
 

@@ -1,12 +1,16 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.AddGroupsRequestDto;
+import com.example.demo.dto.AllGroupsResponseDto;
 import com.example.demo.entity.Group;
 import com.example.demo.entity.Student;
 
 import java.util.List;
 
 public interface GroupService {
-    public void saveGroup(Group group);
+    void saveGroup(AddGroupsRequestDto groupsRequestDto);
 
-    public List<Group> getAllGroup();
+     List<AllGroupsResponseDto> getAllGroup();
+
+
 }

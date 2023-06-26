@@ -11,13 +11,13 @@ import lombok.Setter;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private int id;
-    @Column
+    @Column(name = "name")
     private String name;
-    @Column
+    @Column(name = "surname")
     private String surname;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "group_id")
     private Group group;
 
@@ -39,4 +39,9 @@ public class Student {
         this.surname = surname;
     }
 
+    public Student(String name, String surname, Group group) {
+        this.name = name;
+        this.surname = surname;
+        this.group = group;
+    }
 }

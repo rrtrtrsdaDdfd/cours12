@@ -1,31 +1,35 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.AddStudentsRequestDto;
+import com.example.demo.dto.AllStudentsResponseDto;
 import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/students")
+@RequiredArgsConstructor
 public class StudentController {
-    @Autowired
-    private StudentService studentService;
 
-    @PostMapping("/add")
-    public void saveStudent(@RequestBody Student student) {
-        studentService.saveStudent(student);
+    private final StudentService studentService;
+
+    @PostMapping
+    public void saveStudent(@RequestBody AddStudentsRequestDto studentsRequestDto) {
+        studentService.saveStudent(studentsRequestDto);
     }
 
-    @PostMapping("/delete")
-    public void deleteStudent(@RequestParam int id) {
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable int id) {
         studentService.deleteStudentId(id);
     }
 
-    @GetMapping("/all")
-    public List<Student> getAllStudent() {
+    @GetMapping
+    public List<AllStudentsResponseDto> getAllStudent() {
         return studentService.allStudents();
     }
 
