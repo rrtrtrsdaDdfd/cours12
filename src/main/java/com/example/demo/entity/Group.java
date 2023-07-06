@@ -36,10 +36,6 @@ public class Group {
         this.name = name;
     }
 
-    public void addStudents(Student student) {
-        students.add(student);
-        student.setGroup(this);
-    }
 
 
 }
